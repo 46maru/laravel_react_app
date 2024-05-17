@@ -12,6 +12,10 @@ const Index = (props) => {
             </h2>
         }>
         
+        <div className="">
+            <Link href="/posts/create">Create</Link>
+        </div>
+
         <div className="py-12">
             <h1>Blog Name</h1>
             
