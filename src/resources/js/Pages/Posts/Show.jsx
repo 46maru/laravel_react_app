@@ -24,8 +24,11 @@ const Show = (props) => {
                     <Link href="/posts">戻る</Link>
                 </div>
             </div>
+            <div>
+                <Link href={`/posts/${ post.id }/edit`}>編集</Link>
+            </div>
         </Authenticated>
-        );
+    );
 }
 
 export default Show;
