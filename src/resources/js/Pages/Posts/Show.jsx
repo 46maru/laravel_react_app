@@ -21,6 +21,11 @@ const Show = (props) => {
                 </div>
 
                 <div>
+                    <h3>カテゴリー</h3>
+                    <p>{ post.category.name }</p>
+                </div>
+                
+                <div>
                     <Link href="/posts">戻る</Link>
                 </div>
             </div>
