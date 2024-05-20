@@ -3,13 +3,15 @@ import {Link, useForm} from "@inertiajs/react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 
 const Create = (props) => {
+    const {categories} = props;
+
     const {data, setData, post} = useForm({
         title: "",
-        body: ""
+        body: "",
+        category_id: categories[0].id
     })
 
-    //送信用
-    const handleSubmit = (e) => {
+    function handleSubmit(e) {
         e.preventDefault();
         post("/posts");
     }
@@ -30,8 +32,18 @@ const Create = (props) => {
                     <div>
                         <h2>Body</h2>
                         <textarea onChange={(e) => setData("body", e.target.value)}></textarea>
-                        <button type="submit" className="p-1 bg-purple-300 hover:bg-purple-400 rounded-md">send</button>
                     </div>
+
+                    <div>
+                        <h2>Category</h2>
+                        <select onChange={(e) => setData("category_id", e.target.value)}>
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <button type="submit" className="p-1 bg-purple-300 hover:bg-purple-400 rounded-md">send</button>
                 </form>
 
                 <Link href="/posts">戻る</Link>
