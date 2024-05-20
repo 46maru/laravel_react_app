@@ -1,9 +1,16 @@
 import React from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
 const Index = (props) => {
     const { posts } = props;
+
+    const handleDeletePost = (id) => {
+        router.delete(`/posts/${id}`, {
+            onBefore: () => confirm("本当に削除しますか？"),
+        })
+    }
+
 
     return (
         <Authenticated auth={props.auth} header={
@@ -25,6 +32,8 @@ const Index = (props) => {
                         <Link href={`/posts/${post.id}`}>{post.title}</Link>
                     </h2>
                     <p>{ post.body }</p>
+                    
+                    <button className="p-1 bg-purple-300 hover:bg-purple-400 rounded-md" onClick={() => handleDeletePost(post.id)}>delete</button>
                 </div>
             )) }
         </div>
